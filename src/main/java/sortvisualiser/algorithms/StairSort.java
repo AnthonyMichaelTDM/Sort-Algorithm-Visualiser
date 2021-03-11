@@ -23,7 +23,7 @@ public class StairSort implements ISortAlgorithm
     public StairSort(int stair)
     {
         this.stair = stair;
-    }	
+    }   
 
     /**
      * Sets stair to 8 by default.
@@ -32,6 +32,9 @@ public class StairSort implements ISortAlgorithm
     {
         this(8);
     }
+
+    @Override 
+    public boolean hasAuxArray() {return true;}
 
     @Override
     public String getName() 
@@ -54,21 +57,21 @@ public class StairSort implements ISortAlgorithm
     @Override
     public void runSort(SortArray array)
     {
-        
-        
+
         int n = array.arraySize(); //length of the array
         int min = array.getValue(Util.findMinValueIndex(array)); //smallest number of the array
         int max = array.getValue(Util.findMaxValueIndex(array)); //largest number of the array
-        //array for backup
-        int[] arr = new int[n];
-        for (int i = 0; i < n; i++) arr[i] = array.getValue(i);
+        //array for backup, needed for visualization, not part of the algorithm
+        //int[] arr = new int[n];
+        //for (int i = 0; i < n; i++) arr[i] = array.getValue(i);
         //things for the stair
         int[] stairSizes = new int[stair]; //the highest values each stair bin will store
 
+        array.initAuxArray(n);
         //find the min and max values (done in initialization)
 
         //scale the array up or down so that the min is zero 
-        //not needed bc of the ype of array this program works with
+        //not needed bc of the type of array this program works with
         for (int i = 0; i < n; i++) array.updateSingle(i, array.getValue(i)-min, getDelay(), false);
         max -= min;
 
@@ -84,7 +87,6 @@ public class StairSort implements ISortAlgorithm
         //initialize the bins
         for (int i = 0; i < stair; i++) stairBins[i] = new ArrayList<Integer>();
 
-        
         for (int i = 0; i < n; i++) //parse array, putting things into the bins as needed
         {
             //for loop, checks which bin the item at the current index in arr should go into
@@ -97,39 +99,36 @@ public class StairSort implements ISortAlgorithm
             }
             stairBins[bestBin].add(array.getValue(i));
         }
-        
+
         //change the array to show the bins NOT NEEDED FOR THE ALGORITHM, just visualization
         for(int x=0; x < stairBins.length; x++) {
             //convert arraylist to array, count sort that
             int[] binArr = stairBins[x].stream().mapToInt(i -> i).toArray();
             //apply sorted array
             for (int e : binArr) {
-                array.updateSingle(currSortIndex++, e, getDelay(), true);
+                array.updateAuxSingle(currSortIndex++, e, getDelay(), true);
             }
         }
         currSortIndex=0;
-        //for (int i = 0; i < n; i++) array.updateSingle(i, arr[i], getDelay(), false);
-        
-        
+
         //  sort each bin 
         //count sort of the bins
         for(int x=0; x < stairBins.length; x++) {
             //convert arraylist to array, count sort that
             int[] binArr = stairBins[x].stream().mapToInt(i -> i).toArray();
-
+            stairBins[x].clear();
+            
             //sort the bin, you can use any algorithm for this
             countSort(binArr);
-            
+
             //apply sorted array
             for (int e : binArr) {
-                arr[currSortIndex] = e;
-                array.updateSingle(currSortIndex++, e, getDelay(), true);
+                array.updateAuxSingle(currSortIndex++, e, getDelay(), true);
             }
-            stairBins[x].clear();
         }
 
         //scale the array back to how it was (this should be the last thing done)
-        for (int i = 0; i < n; i++) array.updateSingle(i, arr[i]+min, getDelay(), false);      
+        for (int i = 0; i < n; i++) array.updateSingle(i, array.removeAux(i)+min, getDelay(), true);      
     }
 
     /**

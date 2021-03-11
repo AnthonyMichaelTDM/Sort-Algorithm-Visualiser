@@ -56,7 +56,10 @@ public class CycleSort implements ISortAlgorithm {
             }
         }
     }
-
+    
+    @Override 
+    public boolean hasAuxArray() {return false;}
+    
     @Override
     public String getName() {
         return "Cycle sort";

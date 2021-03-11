@@ -61,7 +61,10 @@ public class QuickSort implements ISortAlgorithm {
     public void runSort(SortArray array) {
         quickSort(array, 0, array.arraySize() - 1);
     }
-
+    
+    @Override 
+    public boolean hasAuxArray() {return false;}
+    
     @Override
     public String getName() {
         return "Quick Sort";

@@ -33,7 +33,10 @@ public class SelectionSort implements ISortAlgorithm {
             array.swap(i, minIndex, getDelay(), true);
         }
     }
-
+    
+    @Override 
+    public boolean hasAuxArray() {return false;}
+    
     @Override
     public String getName() {
         return "Selection Sort";

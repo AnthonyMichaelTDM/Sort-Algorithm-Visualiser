@@ -112,7 +112,10 @@ public class MergeSort implements ISortAlgorithm {
         int right = array.arraySize() - 1;
         mergeSort(array, left, right);
     }
-
+    
+    @Override  //it does, but it you can see what it's doing without
+    public boolean hasAuxArray() {return false;}
+    
     @Override
     public String getName() {
         return "Merge Sort";

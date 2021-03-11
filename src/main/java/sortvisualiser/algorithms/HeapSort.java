@@ -28,7 +28,8 @@ public class HeapSort implements ISortAlgorithm {
         }
     }
 
-
+    @Override 
+    public boolean hasAuxArray() {return true;}
     @Override
     public void runSort(SortArray array) {
         int n = array.arraySize();
