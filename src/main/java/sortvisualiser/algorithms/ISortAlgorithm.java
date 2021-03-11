@@ -15,4 +15,6 @@ public interface ISortAlgorithm {
     public void setDelay(long delay);
 
     public void runSort(SortArray array);
+    
+    public boolean hasAuxArray();
 }

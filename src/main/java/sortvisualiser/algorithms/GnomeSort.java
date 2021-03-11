@@ -35,7 +35,10 @@ import sortvisualiser.SortArray;
             }
         }
     }
-
+    
+    @Override 
+    public boolean hasAuxArray() {return false;}
+    
     @Override
     public String getName() {
         return "Gnome sort";

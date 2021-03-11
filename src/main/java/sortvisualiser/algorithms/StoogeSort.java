@@ -26,7 +26,10 @@ public class StoogeSort implements ISortAlgorithm {
     public void runSort(SortArray array) {
         stoogeSort(array, 0, array.arraySize() - 1);
     }
-
+    
+    @Override 
+    public boolean hasAuxArray() {return false;}
+    
     @Override
     public String getName() {
         return "Stooge sort";

@@ -31,7 +31,10 @@ public class BubbleSort implements ISortAlgorithm {
             }
         }
     }
-
+    
+    @Override 
+    public boolean hasAuxArray() {return false;}
+    
     @Override
     public String getName() {
         return "Bubble Sort";

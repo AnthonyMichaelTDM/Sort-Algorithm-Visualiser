@@ -32,7 +32,10 @@ public class InsertionSort implements ISortAlgorithm {
             array.updateSingle(j + 1, key, getDelay(), true);
         }
     }
-
+    
+    @Override 
+    public boolean hasAuxArray() {return false;}
+    
     @Override
     public String getName() {
         return "Insertion Sort";

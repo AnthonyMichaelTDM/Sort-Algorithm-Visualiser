@@ -4,8 +4,8 @@ import sortvisualiser.SortArray;
 import sortvisualiser.Util.Util;
 
 public class PancakeSort implements ISortAlgorithm {
-    private long stepDelay = 1
-    ;
+    private long stepDelay = 1;
+    
     private void flip(SortArray array, int i) {
         for (int j = 0; j < i; j++, i--) {
             array.swap(i, j, getDelay(), true);
@@ -22,7 +22,10 @@ public class PancakeSort implements ISortAlgorithm {
             }
         }
     }
-
+    
+    @Override 
+    public boolean hasAuxArray() {return false;}
+    
     @Override
     public String getName() {
         return "Pancake sort";
