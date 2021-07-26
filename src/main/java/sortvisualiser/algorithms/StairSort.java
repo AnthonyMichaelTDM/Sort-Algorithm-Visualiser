@@ -13,7 +13,7 @@ import java.util.Collections;
  */
 public class StairSort implements ISortAlgorithm
 {
-    private long stepDelay = 5;
+    private long stepDelay = 10;
     private int stair;   // number of stair / bins that the algorithm will split the array into
     // larger numbers are slower, but more memory efficient
 

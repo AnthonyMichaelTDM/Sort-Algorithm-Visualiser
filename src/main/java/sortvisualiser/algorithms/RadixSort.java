@@ -81,7 +81,9 @@ public class RadixSort implements ISortAlgorithm {
     }
     
     @Override 
-    public boolean hasAuxArray() {return true;}
+    //technically true, but it's easy enough to see how the algorithm works without showing the auxillary array
+    //and showing the auxillary array would be a bit too diffifult for me right now
+    public boolean hasAuxArray() {return false;}
     
     @Override
     public long getDelay() {
